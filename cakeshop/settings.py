@@ -47,6 +47,8 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+LOGIN_URL = "/adminlogin/"
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ''
@@ -123,7 +125,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'cakeshop.apps.admin'
+    'cakeshop.apps.admin',
+    'cakeshop.apps.client',
+    'cakeshop.csmodels',
+    'cakeshop.services',
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

@@ -1,3 +1,4 @@
+{% load url from future %}
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,4 +6,13 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/primary.css" />
 		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js"></script>
 	</head>
+	<body>
+		{% block headercontent%}
+		{% if user.is_authenticated %}
+		{{ user.first_name }} {{ user.last_name }} <a href="{% url 'cakeshop.apps.admin.views.logoutuser' %}">Log Out</a>
+		{% endif %}.
+		{% endblock %}
+		{% block bodycontent %}
+		{% endblock %}
+	</body>
 </html>

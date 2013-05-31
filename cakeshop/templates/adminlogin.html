@@ -1,0 +1,26 @@
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cakeshop admin</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/primary.css" />
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js"></script>
+	</head>
+	<body>
+		<div id="logincontainer">
+			<form novalidate="" method="POST" target="_self" name="loginForm" action="{% url 'cakeshop.apps.admin.views.loginuser' %}" id="loginForm">
+				{% csrf_token %}
+				<div id="login">
+					Username: <input type="text" name="username" id="UsernameInputText" placeholder="enter username"/>
+					<br/>
+					Password: <input type="password" name="password" id="PasswordInputText" placeholder="enter password"/>
+					<br/>
+					<input type="submit" name="SI" id="SubmitButton" value="Sign in" class="default" />
+				</div>
+				<div id="status">
+					{{ state }}
+				</div>
+			</form>
+		</div>
+	</body>
+</html>
