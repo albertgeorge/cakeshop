@@ -1,1 +1,1 @@
-s is the sourcefor the cakeshopproject
+This is the source for the cakeshop project
