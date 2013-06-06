@@ -6,22 +6,23 @@
 		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/adminloginstyles.css" />
 		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js"></script>
 	</head>
-	<body>
-		<div id="logincontainer">
-			<label>Cakeshop admin</label>
-			<form novalidate="" method="POST" target="_self" name="loginForm" action="{% url 'cakeshop.apps.admin.views.loginuser' %}" id="loginForm">
+	<body>		
+		<section class="main">
+			<form class="form-2" novalidate="" method="POST" target="_self" name="loginForm" action="{% url 'cakeshop.apps.admin.views.loginuser' %}" id="loginForm">
 				{% csrf_token %}
-				<div id="login">
-					<span>Username:</span><input type="text" name="username" id="UsernameInputText" placeholder="enter username"/>
-					<br/>
-					<span>Password:</span><input type="password" name="password" id="PasswordInputText" placeholder="enter password"/>
-					<br/>
-					<input type="submit" name="SI" id="SubmitButton" value="Sign in" class="default" />
-				</div>
-				<div id="status">
-					{{ state }}
-				</div>
-			</form>
-		</div>
+				<h1><span class="log-in">cakeshop admin login</span></h1>
+				<p class="float">
+					<label for="login"><i class="icon-user"></i>Username</label>
+					<input type="text" id="username" name="username" placeholder="Username or email">
+				</p>
+				<p class="float">
+					<label for="password"><i class="icon-lock"></i>Password</label>
+					<input type="password" id="password" name="password" placeholder="Password" class="showpassword">
+				</p>
+				<p class="clearfix"> 					    
+					<input type="submit" name="submit" value="Log in">
+				</p>
+			</form>​​
+		</section>
 	</body>
 </html>
