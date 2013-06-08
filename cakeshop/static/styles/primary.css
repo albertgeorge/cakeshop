@@ -1,6 +1,6 @@
 body
 {
-	background-color:Silver;
-	font-size: 14px; 
+	font-size: 12px; 
 	font-family: Ubuntu,sans-serif;
+	background: #e1c192 url(/static/images/Sand_Pattern.jpg);
 }
