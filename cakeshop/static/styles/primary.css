@@ -3,4 +3,94 @@ body
 	font-size: 12px; 
 	font-family: Ubuntu,sans-serif;
 	background: #e1c192 url(/static/images/Sand_Pattern.jpg);
+	margin:0px;
+}
+
+#container
+{
+	margin-top:0px;
+	margin-left:100px;
+	margin-right:100px;
+	height:1000px;
+}
+
+#welcome
+{	
+	height:20px;
+	width:100%;
+	clear:both;
+	background: #e1c192 url(/static/images/Sand_Pattern.jpg);
+}
+
+#welcome div
+{
+	float:right;
+}
+
+#logo
+{
+	height:75px;
+	clear:both;
+	color:Black;
+	font-family:Verdana;
+	font-size:36px;
+	line-height:73px;    
+    padding-left:10px;
+}
+
+#nav
+{
+	height:30px;
+	background-color:#e1c192;
+	box-shadow: 10px 10px 5px #888888;
+	border-bottom:2px solid #888888;
+}
+
+#nav ul
+{margin:0px; padding:0px;}
+
+#nav ul li
+{display:inline; height:22px; float:left; list-style:none; margin-left:15px;position:relative; width:60px;line-height:28px;}
+
+#nav li a
+{color:Black; text-decoration:none;}
+
+#nav li a:hover
+{text-decoration:underline;}
+
+#nav li ul
+{
+margin:0px;
+padding:0px;
+display:none;
+position:absolute;
+left:0px; top:20px;
+background-color:#e1c192;
+}
+
+#navigation li li a
+{color:#fff; text-decoration:none;}
+
+#navigation li li a:hover
+{text-decoration:underline;}
+
+#nav li:hover ul
+{
+display:block;
+width:100px;
+}
+
+#nav li li
+{
+list-style:none;
+display:list-item;
+width:100%;
+}
+
+#bodycontent
+{
+	background-color:White;
+	height:auto;
+	box-shadow: 10px 10px 5px #888888;
+	height:800px;
 }

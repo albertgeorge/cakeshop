@@ -7,12 +7,33 @@
 		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js"></script>
 	</head>
 	<body>
-		{% block headercontent%}
-		{% if user.is_authenticated %}
-		{{ user.first_name }} {{ user.last_name }} <a href="{% url 'cakeshop.apps.admin.views.logoutuser' %}">Log Out</a>
-		{% endif %}.
-		{% endblock %}
-		{% block bodycontent %}
-		{% endblock %}
+		<div id="container">
+			<div id="welcome">
+				{% block headercontent %}
+					{% if user.is_authenticated %}
+						<div>Hi {{ user.first_name }} | <a href="{% url 'cakeshop.apps.admin.views.logoutuser' %}">Log Out</a></div>
+					{% endif %}
+				{% endblock %}
+			</div>
+			<div id="logo">
+				Cakeshop admin
+			</div>
+			<div id="nav">
+				<ul>
+				 	<li><a href="#">Home</a></li>
+				 	<li>				 
+				  		<a href="#">Item</a>				  
+				  		<ul>				  
+				   			<li><a href="#">Create</a></li>
+						   	<li><a href="#">Search</a></li>			  
+				  		</ul>				 
+				 	</li>			
+				</ul>
+			</div>
+			<div id="bodycontent">
+				{% block bodycontent %}
+				{% endblock %}
+			</div>
+		</div>
 	</body>
 </html>
