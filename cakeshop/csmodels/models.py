@@ -6,7 +6,7 @@ class Item(models.Model):
     
 class ItemCategory(models.Model):
     name = models.CharField(max_length=100)
-    item = models.ForeignKey(Item)
+    item = models.ForeignKey(Item, blank=True,null=True)
 
 class ItemImage(models.Model):
     imageurl = models.CharField(max_length=400)
