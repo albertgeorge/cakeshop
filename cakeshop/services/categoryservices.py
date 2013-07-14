@@ -11,5 +11,9 @@ class CategoryService(object):
     
     def add_category(self,name):
         obj, created = ItemCategory.objects.get_or_create(name=name)
-        return obj is not None 
+        result = {
+                  'status':obj is not None,
+                  'data': -1 if obj is None else obj.id
+                 }
+        return result
         

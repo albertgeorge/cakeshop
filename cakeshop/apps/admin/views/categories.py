@@ -14,4 +14,4 @@ def add_category(request):
     category_name = request.POST['name']
     cat_service = CategoryService()
     result = cat_service.add_category(category_name)
-    return HttpResponse(result) 
+    return HttpResponse(json.dumps(result)) 
