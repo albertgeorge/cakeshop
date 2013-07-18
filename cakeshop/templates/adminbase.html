@@ -18,21 +18,21 @@
 			
 			var onload = function()
 			{
-				$("#createitem").hide();
-				$("#createcategory").hide();
+				$("#itembox").hide();
+				$("#categorybox").hide();
 				load_categories();
 			}
 			
 			var wireevents = function()
 			{
 				$("#create").click(function(){
-					$("#createitem").show();
-					$("#createitem").lightbox_me({
+					$("#itembox").show();
+					$("#itembox").lightbox_me({
         					centered: true,lightboxSpeed:"normal",onLoad:load_categories});
 				});
 				$("#categoryadd").click(function(){
-					$("#createcategory").show();
-					$("#createcategory").lightbox_me({
+					$("#categorybox").show();
+					$("#categorybox").lightbox_me({
         					centered: true,lightboxSpeed:"normal"});					
 				});
 				$("#addcategorybutton").click(function(){
@@ -40,7 +40,7 @@
 					if(cat != '')
 					{ 
 						$.post('{% url 'cakeshop.apps.admin.views.categories.add_category' %}',{name:cat},function(result){
-							$("#createcategory").trigger('close');
+							$("#categorybox").trigger('close');
 							result = $.parseJSON(result);
 							if(result['status'] && result['data'] != -1)
 							{
@@ -71,8 +71,14 @@
 					}
 				});
 				$("#canceladdcategorybutton").click(function(){
-					$("#createcategory").trigger('close');
-				});				
+					$("#categorybox").trigger('close');
+				});	
+				$("#additem").click(function(){
+					alert('add clicked');
+				});	
+				$("#canceladditembutton").click(function(){
+					$("#itembox").trigger('close');
+				});		
 			}
 			
 			var load_categories = function()
@@ -128,14 +134,31 @@
 				{% block bodycontent %}
 				{% endblock %}
 			</div>
-			<div id="createitem">
-				Category <select id="categorycombobox"></select>
+			<div id="itembox">
+				<h2>add item</h2>
+				<div id="createitem">						
+					<label>name</label><input name="name" type=text />								
+					<label>category</label><select id="categorycombobox"></select>
+					<label>description</label><textarea name="description"></textarea>	
+					<div id="itemimages">
+						<input type="file" name="addimg" />
+					</div>
+					<div id="addnew"><input type="button" value="Add image" /></div>
+					<fieldset>
+						<legend>images</legend>
+						<div id="imgcontainer"></div>
+					</fieldset>					
+					<hr/>
+					<div id="actionbar"><input type="button" id="additembutton" value="Add"/><input type="button" id="canceladditembutton" value="Cancel"/></div>				
+				</div>
 			</div>
-			<div id="createcategory">
-				<div id="title"><span>add category</span></div><br/>
-				category <input type="text" id="categoryinputbox" />
-				<hr/>
-				<div id="actionbar"><input type="button" id="addcategorybutton" value="Add"/><input type="button" id="canceladdcategorybutton" value="Cancel"/></div>
+			<div id="categorybox">
+				<div id="createcategory">
+					<h2>add category</h2>
+					category <input type="text" id="categoryinputbox" />
+					<hr/>
+					<div id="actionbar"><input type="button" id="addcategorybutton" value="Add"/><input type="button" id="canceladdcategorybutton" value="Cancel"/></div>
+				</div>
 			</div>
 		</div>
 	</body>
