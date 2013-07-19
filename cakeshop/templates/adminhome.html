@@ -1,4 +1,13 @@
 {% extends "adminbase.html" %}
-{% block bodycontent %}
-	Admin home page
-{% endblock %}
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+	<head>
+		{% block pagetitle %} home {% endblock %}
+	</head>
+	<body>
+		{% block bodycontent %}
+			admin home page
+		{% endblock %}
+	</body>
+</html>

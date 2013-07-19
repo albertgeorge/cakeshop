@@ -1,0 +1,45 @@
+{% extends "adminbase.html" %}
+{% load url from future %}
+{% block pagetitle %} item details {% endblock %}
+{% block pagescripts %}
+	<script type="text/javascript">		
+		var load_categories = function()
+		{
+			if(categories == null)
+			{
+				$.get('{% url 'cakeshop.apps.admin.views.categories.get_categories' %}',function(data,status,xhr)
+				{
+					if(data.length > 0)
+					{
+						var options = []
+						$.each(data, function(key,value){
+							options.push('<option value="'+ value.id +'">'+ value.name +'</option>');
+						});
+						$('#categorycombobox').html(options.join(''));							
+					}
+				});
+			}
+		}	
+		
+		load_categories();
+	</script>
+{% endblock %}
+{% block bodycontent %}
+	<div id="toolbar"><div>add</div></div>
+	<div id="itembox">
+		<h2>add item</h2>
+		<div id="createitem">						
+			<p><div id="key"><label>name</label></div><div id="val"><input name="name" type="text" /></div></p>								
+			<p><div id="key"><label>category</label></div><div id="val"><select id="categorycombobox"></select></div></p>
+			<p><div id="key"><label>description</label></div><div id="val"><textarea name="description"></textarea></div></p>				
+			<div id="imgcontainer"></div>								
+		</div>
+	</div>
+	<div id="imagebox">
+		<h2>add images</h2>
+		<div id="createitem">						
+			<input type="file"/>				
+			<div id="imgcontainer"></div>								
+		</div>
+	</div>
+{% endblock %}
