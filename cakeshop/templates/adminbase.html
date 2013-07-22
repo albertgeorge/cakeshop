@@ -16,7 +16,13 @@
 			
 			$(document).ready(function(){				
 				wireevents();
+				pageload();
 			});	
+			
+			var pageload = function()
+			{
+				$("#categorybox").hide();				
+			}
 			
 			var wireevents = function()
 			{
@@ -100,9 +106,8 @@
 			<div id="categorybox">
 				<div id="createcategory">
 					<h2>add category</h2>
-					<p><div id="key"><label>category</label></div><div id="val"><input type="text" id="categoryinputbox" /></div></p> 
-					<br/><br/>
-					<hr/>
+					<div id="bc"><div id="a"><label>category</label></div><div id="b"><input type="text" id="categoryinputbox" /></div></div>
+					<hr style="clear:both;"/>
 					<div id="actionbar"><input type="button" id="addcategorybutton" value="Add"/><input type="button" id="canceladdcategorybutton" value="Cancel"/></div>
 				</div>
 			</div>
