@@ -40,14 +40,14 @@
 							result = $.parseJSON(result);
 							if(result['status'] && result['data'] != -1)
 							{
-								var new_category = new Object();
-								new_category.id=result['data'];
-								new_category.name=cat;
-								categories.push(new_category);
 								$.ambiance({
 									message: "The category has been successfully added.", 
 						            title: "Success!",
 						            type: "success"});
+						        if($('#categorycombobox'))
+						        {
+						        	$('#categorycombobox').append(new Option(cat, result['data']));
+						        }
 							}
 							else
 							{
@@ -106,7 +106,12 @@
 			<div id="categorybox">
 				<div id="createcategory">
 					<h2>add category</h2>
-					<div id="bc"><div id="a"><label>category</label></div><div id="b"><input type="text" id="categoryinputbox" /></div></div>
+					<table>
+						<tr>
+							<td valign="center"><label>category</label></td>
+							<td><input type="text" id="categoryinputbox" /></td>
+						</tr>
+					</table>
 					<hr style="clear:both;"/>
 					<div id="actionbar"><input type="button" id="addcategorybutton" value="Add"/><input type="button" id="canceladdcategorybutton" value="Cancel"/></div>
 				</div>

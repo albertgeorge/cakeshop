@@ -9,6 +9,5 @@ class ItemCategory(models.Model):
     item = models.ForeignKey(Item, blank=True,null=True)
 
 class ItemImage(models.Model):
-    imageurl = models.CharField(max_length=400)
-    linktype = models.CharField(max_length=4)
+    image = models.ImageField(upload_to='productimages',max_length=400)
     item = models.ForeignKey(Item)

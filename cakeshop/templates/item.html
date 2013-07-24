@@ -3,6 +3,7 @@
 {% block pagetitle %} item details {% endblock %}
 {% block pagescripts %}
 	<script type="text/javascript">	
+		var count=0;
 		var load_categories = function()
 		{
 			$.get('{% url 'cakeshop.apps.admin.views.categories.get_categories' %}',function(data,status,xhr)
@@ -18,7 +19,31 @@
 			});
 		}	
 		
-		load_categories();
+		var onpageload = function()
+		{
+			$("#addimagebutton").click(function(){
+				count = count+1;
+				$('#addimagediv').append(
+			        $('<input/>').attr('type', 'file').attr('name', 'imageselector_'+count)
+			    );
+			});
+			
+			$('#imageslider').codaSlider(
+				{
+					dynamicTabs: false,
+					autoHeight: true,
+					continuous: false,
+					dynamicArrowsGraphical: true,
+		        	dynamicArrowLeftText: "&#171; left",
+		       		dynamicArrowRightText: "right &#187;"
+		       });
+		}
+		
+		$(function(){
+		    onpageload();
+			load_categories();
+		});
+		
 	</script>
 {% endblock %}
 {% block bodycontent %}
@@ -28,7 +53,7 @@
 			<table>
 				<tr>
 					<td valign="center"><label>name</label></td>
-					<td><input type="text" id="categoryinputbox" /></td>
+					<td><input type="text" id="iteminputbox" /></td>
 				</tr>
 				<tr>
 					<td><label>category</label></td>
@@ -39,8 +64,13 @@
 					<td><textarea id="desctextarea"></textarea></td>
 				</tr>
 			</table>
+			<div><input type="button" value="Add image" id="addimagebutton"></input></div>
+			<div id="addimagediv"></div>
 		</div>
 		<div id="right">
+			<div class="coda-slider" id="imageslider">    
+				
+    		</div>
 		</div>
 		<hr style="clear:both;"/>
 		<div id="actionbar"><input type="button" id="additembutton" value="Add"/></div>

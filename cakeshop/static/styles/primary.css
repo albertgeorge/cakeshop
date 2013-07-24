@@ -240,7 +240,7 @@ width:100%;
 {
 	background-color:#e1c192;
 	width:400px;
-	height:128px;
+	height:142px;
 	padding-left:5px;
 	padding-right:5px;
 	-webkit-border-radius: 6px;
@@ -251,6 +251,13 @@ width:100%;
 #left
 {
 	width:375px;
+	float:left;
+}
+
+#right
+{
+	width:370px;
+	float:right;
 }
 
 #title
@@ -268,7 +275,7 @@ width:100%;
 {
 	/* Size and position */
     width: 750px;
-    height: 280px;
+    height: auto;
     padding: 15px;
     padding-top: 2px;
     position: absolute;
