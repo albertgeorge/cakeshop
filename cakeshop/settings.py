@@ -51,12 +51,12 @@ LOGIN_URL = "/adminlogin/"
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(PROJECT_ROOT,'static')
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -88,6 +88,11 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+#FILE_UPLOAD_HANDLERS = (
+#    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+#    'django.core.files.uploadhandler.TemporaryFileUploadHandler'
+#)
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'okeij2uz-4v=t*=&ch*)o5)ljnwus6%vq_8d(@a7_ah02+2k*n'

@@ -37,6 +37,16 @@
 		        	dynamicArrowLeftText: "&#171; left",
 		       		dynamicArrowRightText: "right &#187;"
 		       });
+		     
+		     $('#myForm').ajaxForm(
+		     	{ 
+		     		success:postsubmitaction,
+		     		beforeSubmit:presubmitaction 
+		     	}); 
+		     $('#myFormId').submit(function() { 
+    		 	$(this).ajaxSubmit(); 
+    	     	return false; 
+			  });
 		}
 		
 		$(function(){
@@ -44,35 +54,45 @@
 			load_categories();
 		});
 		
+		var postsubmitaction = function(response)
+		{
+		}
+		
+		var presubmitaction = function(formData, jqForm, options)
+		{
+			var queryString = $.param(formData);
+		}
 	</script>
 {% endblock %}
 {% block bodycontent %}
-	<div id="itembox">
-		<h1>add item</h1>
-		<div id="left">	
-			<table>
-				<tr>
-					<td valign="center"><label>name</label></td>
-					<td><input type="text" id="iteminputbox" /></td>
-				</tr>
-				<tr>
-					<td><label>category</label></td>
-					<td><select id="categorycombobox"></select></td>
-				</tr>
-				<tr>
-					<td valign="middle"><label>description</label></td>
-					<td><textarea id="desctextarea"></textarea></td>
-				</tr>
-			</table>
-			<div><input type="button" value="Add image" id="addimagebutton"></input></div>
-			<div id="addimagediv"></div>
+	<form id="myForm" action="{% url 'cakeshop.apps.admin.views.items.add_edit_item' %}" method="post">
+		<div id="itembox">
+			<h1>add item</h1>
+			<div id="left">	
+				<table>
+					<tr>
+						<td valign="center"><label>name</label></td>
+						<td><input type="text" id="iteminputbox" name="iteminputbox" /></td>
+					</tr>
+					<tr>
+						<td><label>category</label></td>
+						<td><select id="categorycombobox" name="categorycombobox"></select></td>
+					</tr>
+					<tr>
+						<td valign="middle"><label>description</label></td>
+						<td><textarea id="desctextarea" name="desctextarea"></textarea></td>
+					</tr>
+				</table>
+				<div><input type="button" value="Add image" id="addimagebutton"></input></div>
+				<div id="addimagediv"></div>
+			</div>
+			<div id="right">
+				<div class="coda-slider" id="imageslider">    
+					
+	    		</div>
+			</div>
+			<hr style="clear:both;"/>
+			<div id="actionbar"><input type="submit" id="additembutton" value="Add"/></div>
 		</div>
-		<div id="right">
-			<div class="coda-slider" id="imageslider">    
-				
-    		</div>
-		</div>
-		<hr style="clear:both;"/>
-		<div id="actionbar"><input type="button" id="additembutton" value="Add"/></div>
-	</div>
+	</form>
 {% endblock %}
