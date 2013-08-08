@@ -12,7 +12,7 @@ class ItemService(object):
         
         for key in files.keys():
             item_img = files.get(key)
-            file_name = '%s/%s'%(settings.MEDIA_URL, item_img.name)
+            file_name = '%s%s'%(settings.MEDIA_URL, item_img.name)
             images.append(file_name)
             img_handle = open('%s/%s'%(settings.MEDIA_ROOT, item_img.name),'wb+')
             for chunk in item_img.chunks():
@@ -24,7 +24,7 @@ class ItemService(object):
                   'status':'SUCCESS',
                   'data': 
                   {
-                    'item_id':item.id,
+                    'item_id':1,
                     'images':images
                   }
                  }

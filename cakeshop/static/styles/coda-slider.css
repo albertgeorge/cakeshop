@@ -34,14 +34,14 @@ css-tricks.com/musings-on-preprocessing/
     * Inner wrapper styles 
     *
     *******************************************************/
-    background: #f2f2f2;
+    /*background: #f2f2f2;*/
     /******************************************************
     * 
     * Width of the container. Typically you will want to 
     * match this with the width of the panel as well. 
     *
     *******************************************************/
-    width: 700px; 
+    width: 315px; 
   }
     
     .coda-slider-wrapper .coda-slider .panel {
@@ -52,7 +52,7 @@ css-tricks.com/musings-on-preprocessing/
       * of the container as well. 
       *
       *******************************************************/
-      width: 700px; 
+      width: 315px; 
     }
       
       .coda-slider-wrapper .coda-slider .panel .panel-wrapper {
@@ -61,7 +61,7 @@ css-tricks.com/musings-on-preprocessing/
         * Panel wrapper styles 
         *
         *******************************************************/
-        padding: 20px; 
+        /*padding: 20px;*/ 
       }
   
   .coda-slider-wrapper .coda-nav {
@@ -218,7 +218,7 @@ css-tricks.com/musings-on-preprocessing/
   * Margin between slider and arrows 
   *
   *******************************************************/
-  margin: 0 10px; 
+  margin: 0 5px; 
 }
 
 /**********************************************************************

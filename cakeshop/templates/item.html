@@ -4,6 +4,8 @@
 {% block pagescripts %}
 	<script type="text/javascript">	
 		var count=0;
+		var current_item_id = 0;
+		
 		var load_categories = function()
 		{
 			$.get('{% url 'cakeshop.apps.admin.views.categories.get_categories' %}',function(data,status,xhr)
@@ -28,15 +30,18 @@
 			    );
 			});
 			
-			$('#imageslider').codaSlider(
-				{
-					dynamicTabs: false,
-					autoHeight: true,
-					continuous: false,
-					dynamicArrowsGraphical: true,
-		        	dynamicArrowLeftText: "&#171; left",
-		       		dynamicArrowRightText: "right &#187;"
-		       });
+			if(current_item_id != 0)
+			{
+				$('#imageslider').codaSlider(
+					{
+						dynamicTabs: false,
+						autoHeight: true,
+						continuous: false,
+						dynamicArrowsGraphical: true,
+			        	dynamicArrowLeftText: "&#171; left",
+			       		dynamicArrowRightText: "right &#187;"
+			       });
+		     }
 		     
 		     $('#myForm').ajaxForm(
 		     	{ 
@@ -56,6 +61,35 @@
 		
 		var postsubmitaction = function(response)
 		{
+			r = eval('('+response+')');
+			if(r != null && r.status == 'SUCCESS')
+			{
+				current_item_id = r.data.item_id;
+				$.each(r.data.images, function(a,b){
+					div_element = document.createElement("div");
+					div_element.width = 300;
+					div_element.height = 200;
+					anchor_element = document.createElement('a');
+					anchor_element.href = b;	
+					anchor_element.target = "_blank";				
+					img_element = new Image();
+					img_element.src = b;
+					img_element.height = 200;
+					img_element.width = 320;
+					anchor_element.appendChild(img_element);
+					div_element.appendChild(anchor_element);
+					document.getElementById("imageslider").appendChild(div_element);
+				});
+				$('#imageslider').codaSlider(
+					{
+						dynamicTabs: false,
+						autoHeight: true,
+						continuous: false,
+						dynamicArrowsGraphical: true,
+			        	dynamicArrowLeftText: "&#171; left",
+			       		dynamicArrowRightText: "right &#187;"
+			       });
+			}
 		}
 		
 		var presubmitaction = function(formData, jqForm, options)
