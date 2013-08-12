@@ -24,7 +24,7 @@ class ItemService(object):
                   'status':'SUCCESS',
                   'data': 
                   {
-                    'item_id':1,
+                    'item_id':item.id,
                     'images':images
                   }
                  }
