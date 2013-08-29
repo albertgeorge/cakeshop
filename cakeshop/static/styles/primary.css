@@ -61,6 +61,12 @@ textarea
     transition: all 0.3s ease-out;
 }
 
+a
+{
+	text-decoration:none;
+	color:White;
+}
+
 #container
 {
 	margin-top:0px;
@@ -317,4 +323,19 @@ width:100%;
     -ms-transition: all 0.3s ease-out;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
+}
+
+#homecategories
+{
+	margin-left:10px;
+}
+
+#thumbnail
+{
+	border: 1px solid Black;
+}
+
+#items
+{
+	margin: 0 auto;
 }

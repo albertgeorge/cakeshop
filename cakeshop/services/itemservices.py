@@ -29,6 +29,23 @@ class ItemService(object):
                   }
                  }
         return result
+    
+    def getitemsofcategoryid(self,category_id):
+        items = []
+        item_list = None
+        if(category_id == 0):
+            item_list = Item.objects.all()
+        else:
+            item_list = Item.objects.filter(category_id=category_id)
+        
+        for item in item_list:
+            image = ''
+            if item.itemimage_set is not None and item.itemimage_set.count() > 0:
+                image = '%s%s'%(settings.MEDIA_URL, item.itemimage_set.all()[0].image.name)
+            it = {"id":item.id,"name":item.name,"image":image}
+            items.append(it)
+        
+        return items
 
 class ImageUploader(models.ModelForm):
     class Meta:

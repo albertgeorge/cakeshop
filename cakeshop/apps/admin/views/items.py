@@ -4,7 +4,7 @@ from django.http import HttpResponse
 import json
 from cakeshop.services.itemservices import ItemService
 
-def show_item(request):    
+def show_item(request,item_id):    
     return render_to_response('item.html', context_instance = RequestContext(request))
 
 def add_edit_item(request):
