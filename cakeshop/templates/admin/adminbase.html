@@ -1,0 +1,122 @@
+{% load url from future %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>cakeshop admin - {% block pagetitle %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/primary.css" />
+		<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}styles/coda-slider.css" />
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.lightbox_me.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.ambiance.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/common.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.easing.1.3.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.coda-slider-3.0.min.js"></script>
+		<script type="text/javascript" src="{{ STATIC_URL }}scripts/jquery.form.min.js"></script>
+		<script type="text/javascript">
+			var categories = null;
+			
+			$(document).ready(function(){				
+				wireevents();
+				pageload();
+			});	
+			
+			var pageload = function()
+			{
+				$("#categorybox").hide();				
+			}
+			
+			var wireevents = function()
+			{
+				$("#categoryadd").click(function(){
+					$("#categorybox").show();
+					$("#categorybox").lightbox_me({
+        					centered: true,lightboxSpeed:"normal"});					
+				});
+				$("#addcategorybutton").click(function(){
+					var cat = $.trim($("#categoryinputbox").val());
+					if(cat != '')
+					{ 
+						$.post('{% url 'cakeshop.apps.admin.views.categories.add_category' %}',{name:cat},function(result){
+							$("#categorybox").trigger('close');
+							result = $.parseJSON(result);
+							if(result['status'] && result['data'] != -1)
+							{
+								$.ambiance({
+									message: "The category has been successfully added.", 
+						            title: "Success!",
+						            type: "success"});
+						        if($('#categorycombobox'))
+						        {
+						        	$('#categorycombobox').append(new Option(cat, result['data']));
+						        }
+							}
+							else
+							{
+								$.ambiance({
+									message: "Error adding the category", 
+						            title: "Error",
+						            type: "error"});
+							}
+						});
+					}
+					else
+					{
+						$.ambiance({
+							message: "Please enter a category", 
+				            title: "Error",
+				            type: "error"});
+					}
+				});
+				$("#canceladdcategorybutton").click(function(){
+					$("#categorybox").trigger('close');
+				});		
+			}		
+		</script>
+		{% block pagescripts %}
+		{% endblock %}
+	</head>
+	<body>
+		 {% csrf_token %}
+		<div id="container">
+			<div id="welcome">
+				{% block headercontent %}
+					{% if user.is_authenticated %}
+						<div>hi {{ user.first_name }} | <a href="{% url 'cakeshop.apps.admin.views.logoutuser' %}">log out</a></div>
+					{% endif %}
+				{% endblock %}
+			</div>
+			<div id="logo">
+				Cakeshop admin</div>
+			<div id="nav">
+				<ul>
+				 	<li><a href="{% url 'cakeshop.apps.admin.views.authenticate.showadminhome' %}">Home</a></li>
+				 	<li>				 
+				  		<a href="#">Item</a>				  
+				  		<ul>				  
+				   			<li><a id="create" href="{% url 'cakeshop.apps.admin.views.items.new_item' %}">Create</a></li>
+						   	<li><a href="#">Search</a></li>	
+						   	<li><a id="categoryadd" href="#">Add Category</a></li>
+				  		</ul>				 
+				 	</li>		
+				</ul>
+			</div>
+			<div id="bodycontent">
+				{% block bodycontent %}
+				{% endblock %}
+			</div>			
+			<div id="categorybox">
+				<div id="createcategory">
+					<h2>add category</h2>
+					<table>
+						<tr>
+							<td valign="center"><label>category</label></td>
+							<td><input type="text" id="categoryinputbox" /></td>
+						</tr>
+					</table>
+					<hr style="clear:both;"/>
+					<div id="actionbar"><input type="button" id="addcategorybutton" value="Add"/><input type="button" id="canceladdcategorybutton" value="Cancel"/></div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

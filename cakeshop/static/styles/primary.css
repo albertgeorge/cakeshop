@@ -89,6 +89,7 @@ a
 	float:right;
 	padding-right:4px;
 	padding-top:4px;
+	text-transform: lowercase;
 }
 
 #logo

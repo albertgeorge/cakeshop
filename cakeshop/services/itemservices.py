@@ -46,6 +46,27 @@ class ItemService(object):
             items.append(it)
         
         return items
+    
+    def getitem(self,item_id):
+        item_obj = {}
+        try:
+            item = Item.objects.get(id=item_id)
+            item_obj = {'id':item.id,'name':item.name,'description':item.description,'category':item.category.id,'images':[]}
+            if item.itemimage_set is not None and item.itemimage_set.count() > 0:
+                for img in item.itemimage_set.all():
+                    img_obj = {'link':'%s%s'%(settings.MEDIA_URL, img.image.name)}
+                    item_obj['images'].append(img_obj)
+        except:
+            pass
+        
+        result = {
+                  'status':'SUCCESS',
+                  'data': 
+                  {
+                    'item':item_obj
+                  }
+                 }
+        return result
 
 class ImageUploader(models.ModelForm):
     class Meta:

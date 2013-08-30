@@ -23,7 +23,7 @@ def loginuser(request, next_page):
     if request.user.is_authenticated():
         return HttpResponseRedirect(request.GET.get("next", next_page))    
     
-    return render_to_response('adminlogin.html', {'state' : state}, context_instance = RequestContext(request)) 
+    return render_to_response('admin/adminlogin.html', {'state' : state}, context_instance = RequestContext(request)) 
 
 @login_required    
 def showadminhome(request):
@@ -31,7 +31,7 @@ def showadminhome(request):
     item_services = ItemService()
     categories = cat_services.get_categories()
     items = item_services.getitemsofcategoryid(0)
-    return render_to_response('adminhome.html',{'categories':categories,'items':items}, context_instance = RequestContext(request))
+    return render_to_response('admin/adminhome.html',{'categories':categories,'items':items}, context_instance = RequestContext(request))
 
 @login_required
 def logoutuser(request):
