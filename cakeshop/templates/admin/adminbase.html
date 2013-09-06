@@ -22,7 +22,11 @@
 			
 			var pageload = function()
 			{
-				$("#categorybox").hide();				
+				$("#categorybox").hide();	
+				if(onpageload != undefined)
+				{
+					onpageload();
+				}			
 			}
 			
 			var wireevents = function()
@@ -89,7 +93,7 @@
 				Cakeshop admin</div>
 			<div id="nav">
 				<ul>
-				 	<li><a href="{% url 'cakeshop.apps.admin.views.authenticate.showadminhome' %}">Home</a></li>
+				 	<li><a href="{% url 'cakeshop.apps.admin.views.items.get_data_for_adminhome' %}">Home</a></li>
 				 	<li>				 
 				  		<a href="#">Item</a>				  
 				  		<ul>				  

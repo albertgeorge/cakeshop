@@ -33,10 +33,10 @@ class ItemService(object):
     def getitemsofcategoryid(self,category_id):
         items = []
         item_list = None
-        if(category_id == 0):
+        if(category_id == '0' or category_id == 0):
             item_list = Item.objects.all()
         else:
-            item_list = Item.objects.filter(category_id=category_id)
+            item_list = Item.objects.filter(category__id=category_id)
         
         for item in item_list:
             image = ''
@@ -45,7 +45,14 @@ class ItemService(object):
             it = {"id":item.id,"name":item.name,"image":image}
             items.append(it)
         
-        return items
+        result = {
+                  'status':'SUCCESS',
+                  'data': 
+                  {
+                    'items':items
+                  }
+                 }
+        return result
     
     def getitem(self,item_id):
         item_obj = {}

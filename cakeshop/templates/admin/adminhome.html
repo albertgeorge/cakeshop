@@ -1,42 +1,58 @@
 {% extends "admin/adminbase.html" %}
 {% load url from future %}
-<!DOCTYPE html>
-<html>
-	<head>
-		{% block pagetitle %} home {% endblock %}
-	</head>
-	<body>
-		{% block bodycontent %}
-			<table id="homecategories">
-				<tr>
-					<td>categories </td>
-					<td>
-						<select id="categoriesdropdown">
-						{% if categories == None %}
-							<option value="0">no categories available</option>
-						{% else %}
-							<option value="0">All</option>
-							{% for category in categories %}
-								<option value="{{ category.id }}">{{ category.name }}</option>
-							{% endfor %}
-						{% endif %}
-						</select>
-					</td>
-				</tr>
-			</table>
-			<br/>
-			<div id="items">
-				<table>					
-					{% for item in items %}
-					<tr>
-						<td>	
-						{% include 'admin/itemthumb.html' with thumb=item %}
-						</td>
-					</tr>
-					{% endfor %}
-					</tr>
-				</table>
-			</div>
-		{% endblock %}
-	</body>
-</html>
+{% block pagetitle %} home {% endblock %}
+{% block pagescripts %}
+	<script type="text/javascript">
+		var onpageload = function(){
+			$("#categoriesdropdown").bind("change", function() {
+			  	var category_id = $(this).find('option:selected').val();
+			  	$.post('/listitems/'+category_id+'/',function(result){
+			  		$("#items").html(result);
+			  	});
+			});
+			
+			/*$('.step-links #prev' ).click( function(e) {
+		        e.preventDefault();
+		        url = ($( '.step-links #prev' )[0].href);
+		        get_async_update();
+		    });
+		    
+		    $('.step-links #next' ).click( function(e) {
+		        e.preventDefault();
+		        url = ($( '.step-links #next' )[0].href);
+		        get_async_update();		
+		    });*/
+		    
+		    var url = "{% url 'cakeshop.apps.admin.views.items.itemlist' %}";
+		    get_async_update(url);
+		}
+		
+		var get_async_update = function(url){
+			$.get(url,function(result){
+				$("#items").html(result);
+			},'html');
+		}
+	</script>
+{% endblock %}
+{% block bodycontent %}
+	<table id="homecategories">
+			<tr>
+				<td>categories </td>
+				<td>
+					<select id="categoriesdropdown" name="categoriesdropdown">
+					{% if categories == None %}
+						<option value="0">no categories available</option>
+					{% else %}
+						<option value="0">All</option>
+						{% for category in categories %}
+							<option value="{{ category.id }}">{{ category.name }}</option>
+						{% endfor %}
+					{% endif %}
+					</select>
+				</td>
+			</tr>
+		</table>
+		<br/>		
+		<div id="items">						
+		</div>	
+{% endblock %}

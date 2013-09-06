@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import patterns, include, url
+from django.conf.urls.defaults import patterns, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.http import HttpResponsePermanentRedirect
 from django.conf import settings 
@@ -12,12 +12,14 @@ urlpatterns = patterns(
     url(r'^admin/?$',lambda request: HttpResponsePermanentRedirect('/adminlogin/')),
     url(r'^adminlogin/?$', 'admin.views.authenticate.loginuser', {'next_page': '/adminhome/'}),   
     url(r'^logout/?$', 'admin.views.authenticate.logoutuser'),
-    url(r'^adminhome/?$', 'admin.views.authenticate.showadminhome'),
+    url(r'^adminhome/?$', 'admin.views.items.get_data_for_adminhome'),
     url(r'^categories/?$', 'admin.views.categories.get_categories'),
     url(r'^addcategory/?$', 'admin.views.categories.add_category'),
     url(r'^showitem/(?P<item_id>\d)/$', 'admin.views.items.show_item'),
     url(r'^newitem/?$', 'admin.views.items.new_item'),
     url(r'^addedititem/?$', 'admin.views.items.add_edit_item'),
+    url(r'^listitems/?$', 'admin.views.items.itemlist'),
+    url(r'^listitems/(?P<category_id>\d)/$', 'admin.views.items.itemlist'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

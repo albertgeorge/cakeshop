@@ -77,12 +77,9 @@
     		 	$(this).ajaxSubmit(); 
     	     	return false; 
 			  });
+			  
+			  load_categories();
 		}
-		
-		$(function(){
-		    onpageload();
-			load_categories();
-		});
 		
 		var postsubmitaction = function(response)
 		{

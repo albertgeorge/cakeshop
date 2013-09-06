@@ -4,8 +4,6 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
-from cakeshop.services.categoryservices import CategoryService
-from cakeshop.services.itemservices import ItemService
 
 def loginuser(request, next_page):
     state=''
@@ -24,14 +22,6 @@ def loginuser(request, next_page):
         return HttpResponseRedirect(request.GET.get("next", next_page))    
     
     return render_to_response('admin/adminlogin.html', {'state' : state}, context_instance = RequestContext(request)) 
-
-@login_required    
-def showadminhome(request):
-    cat_services = CategoryService()
-    item_services = ItemService()
-    categories = cat_services.get_categories()
-    items = item_services.getitemsofcategoryid(0)
-    return render_to_response('admin/adminhome.html',{'categories':categories,'items':items}, context_instance = RequestContext(request))
 
 @login_required
 def logoutuser(request):
