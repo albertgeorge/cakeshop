@@ -1,8 +1,6 @@
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
-import json
 from cakeshop.services.categoryservices import CategoryService
 from cakeshop.services.itemservices import ItemService
 
@@ -16,13 +14,19 @@ def add_edit_item(request):
     category = request.POST.get('categorycombobox')
     desc = request.POST.get('desctextarea')
     files = request.FILES
+    item_id = request.POST.get('item_id')    
     
-    item_service = ItemService()
-    result = item_service.saveitem(item_name=name, item_category=category, item_description=desc, files=files)
-    return HttpResponse(json.dumps(result))
+    if item_id is None and name is None and category is None:
+        return render_to_response('admin/item.html', {}, context_instance = RequestContext(request))
+    else:
+        item_service = ItemService()
+        result = item_service.saveitem(item_name=name, item_category=category, item_description=desc, files=files,item_id=item_id)
+        if item_id is None:
+            item_id = result['data']['item'].id
+        return show_item(request, item_id)
 
 def new_item(request):    
-    return render_to_response('admin/newitem.html', context_instance = RequestContext(request))
+    return render_to_response('admin/item.html', context_instance = RequestContext(request))
 
 def itemlist(request, category_id=0):
     item_services = ItemService()
@@ -33,7 +37,7 @@ def itemlist(request, category_id=0):
     if query is not None:
         page = query
     
-    paged_items = _get_paged_items(items['data']['items'], page, 2)
+    paged_items = _get_paged_items(items['data']['items'], page, 12)
         
     return render_to_response('admin/itemlist.html',{'items':paged_items}, context_instance = RequestContext(request))
 

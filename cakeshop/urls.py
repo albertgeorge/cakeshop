@@ -15,7 +15,7 @@ urlpatterns = patterns(
     url(r'^adminhome/?$', 'admin.views.items.get_data_for_adminhome'),
     url(r'^categories/?$', 'admin.views.categories.get_categories'),
     url(r'^addcategory/?$', 'admin.views.categories.add_category'),
-    url(r'^showitem/(?P<item_id>\d)/$', 'admin.views.items.show_item'),
+    url(r'^showitem/(?P<item_id>\d+)/$', 'admin.views.items.show_item'),
     url(r'^newitem/?$', 'admin.views.items.new_item'),
     url(r'^addedititem/?$', 'admin.views.items.add_edit_item'),
     url(r'^listitems/?$', 'admin.views.items.itemlist'),

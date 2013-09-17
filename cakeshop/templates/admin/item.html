@@ -5,11 +5,14 @@
 	<script type="text/javascript">	
 		var count=0;
 		var current_item_id = 0;
-		var selected_category = {{item.category}};
+		var selected_category = 0;
 		var image_array = new Array();
-		{% for img in item.images %}
-			image_array.push('{{ img.link }}');
-		{% endfor %}
+		{% if item %}
+			selected_category = {{item.category}};
+			{% for img in item.images %}
+				image_array.push('{{ img.link }}');
+			{% endfor %}
+		{% endif %}
 		
 		var load_categories = function()
 		{
@@ -33,6 +36,16 @@
 		
 		var onpageload = function()
 		{
+			$("#additembutton").click(function(){
+				if($("#iteminputbox").val()==""){
+					$.ambiance({
+							message: "Please enter a name", 
+				            title: "Error",
+				            type: "error"});
+					return;
+				}
+				$("#myForm").submit();
+			});
 			$("#addimagebutton").click(function(){
 				count = count+1;
 				$('#addimagediv').append(
@@ -68,7 +81,7 @@
 			       });
 		     }
 		     
-		     $('#myForm').ajaxForm(
+		     /*$('#myForm').ajaxForm(
 		     	{ 
 		     		success:postsubmitaction,
 		     		beforeSubmit:presubmitaction 
@@ -76,7 +89,7 @@
 		     $('#myFormId').submit(function() { 
     		 	$(this).ajaxSubmit(); 
     	     	return false; 
-			  });
+			  });*/
 			  
 			  load_categories();
 		}
@@ -125,14 +138,19 @@
 	</script>
 {% endblock %}
 {% block bodycontent %}
-	<form id="myForm" action="{% url 'cakeshop.apps.admin.views.items.add_edit_item' %}" method="post">
+	<form id="myForm" action="{% url 'cakeshop.apps.admin.views.items.add_edit_item' %}" method="post" enctype="multipart/form-data">
+		{% csrf_token %}
 		<div id="itembox">
 			<h1>add item</h1>
 			<div id="left">	
+				{% if item %}
 				<table>
 					<tr>
-						<td valign="center"><label>name</label></td>
-						<td><input type="text" id="iteminputbox" value="{{item.name}}" name="iteminputbox" /></td>
+						<td valign="center"><label>name</label></td>						
+						<td>
+							<input type="text" id="iteminputbox" value="{{item.name}}" name="iteminputbox" />
+							<input type="hidden" id="item_id" value="{{item.id}}" name="item_id" />
+						</td>						
 					</tr>
 					<tr>
 						<td><label>category</label></td>
@@ -143,6 +161,24 @@
 						<td><textarea id="desctextarea" name="desctextarea">{{item.description}}</textarea></td>
 					</tr>
 				</table>
+				{% else %}
+				<table>
+					<tr>
+						<td valign="center"><label>name</label></td>						
+						<td>
+							<input type="text" id="iteminputbox" value="{{item.name}}" name="iteminputbox" />
+						</td>						
+					</tr>
+					<tr>
+						<td><label>category</label></td>
+						<td><select id="categorycombobox" name="categorycombobox"></select></td>
+					</tr>
+					<tr>
+						<td valign="middle"><label>description</label></td>
+						<td><textarea id="desctextarea" name="desctextarea"></textarea></td>
+					</tr>
+				</table>
+				{% endif %}
 				<div><input type="button" value="Add image" id="addimagebutton"></input></div>
 				<div id="addimagediv"></div>
 			</div>
@@ -152,7 +188,7 @@
 	    		</div>
 			</div>
 			<hr style="clear:both;"/>
-			<div id="actionbar"><input type="submit" id="additembutton" value="Save"/></div>
+			<div id="actionbar"><input type="button" id="additembutton" value="Save"/></div>
 		</div>
 	</form>
 {% endblock %}

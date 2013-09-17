@@ -4,11 +4,26 @@ from cakeshop import settings
 from django.forms import models
 
 class ItemService(object):    
-    def saveitem(self,item_name,item_category,item_description,files):   
+    def saveitem(self,item_name,item_category,item_description,files,item_id):   
         images = []     
         category = ItemCategory.objects.get(id=item_category)
-        item = Item(name=item_name,description=item_description,category=category)
-        item.save()
+        if item_id is None:
+            item = Item(name=item_name,description=item_description,category=category)        
+            item.save()    
+        else:
+            item = Item.objects.get(id=item_id)
+            item.name = item_name
+            item.category = category
+            item.description = item_description
+            item.save()
+            try:
+                item_images = ItemImage.objects.get(item=item)       
+                if item_images is not None and len(item_images) > 0:
+                    for img in item_images:
+                        images.append('%s%s'%(settings.MEDIA_URL, img.name))
+            except:
+                pass
+                                    
         
         for key in files.keys():
             item_img = files.get(key)
@@ -24,7 +39,7 @@ class ItemService(object):
                   'status':'SUCCESS',
                   'data': 
                   {
-                    'item_id':item.id,
+                    'item':item,
                     'images':images
                   }
                  }
