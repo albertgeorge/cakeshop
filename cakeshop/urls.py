@@ -20,6 +20,9 @@ urlpatterns = patterns(
     url(r'^addedititem/?$', 'admin.views.items.add_edit_item'),
     url(r'^listitems/?$', 'admin.views.items.itemlist'),
     url(r'^listitems/(?P<category_id>\d)/$', 'admin.views.items.itemlist'),
+    url(r'^showcase/?$', 'admin.views.showcase.show_showcase'),
+    url(r'^showcaseitems/?$', 'admin.views.showcase.get_showcase_items'),
+    url(r'^setshowcaseitems/?$', 'admin.views.showcase.set_showcase'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

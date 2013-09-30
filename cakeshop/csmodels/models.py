@@ -1,5 +1,6 @@
 from django.db import models
 from cakeshop import settings
+from MySQLdb.constants.FIELD_TYPE import NULL
 
 class ItemCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -22,6 +23,7 @@ class Item(models.Model):
 class ItemImage(models.Model):
     image = models.ImageField(upload_to=settings.MEDIA_URL,max_length=400)
     item = models.ForeignKey(Item)
+    is_showcase = models.BooleanField(default=False)
     creation_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
     
