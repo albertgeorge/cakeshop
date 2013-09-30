@@ -129,7 +129,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',  
     'cakeshop.apps.admin',
     'cakeshop.apps.client',
     'cakeshop.csmodels',

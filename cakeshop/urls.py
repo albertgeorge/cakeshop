@@ -9,6 +9,7 @@ from django.conf import settings
 
 urlpatterns = patterns(
     'cakeshop.apps',
+    url(r'/?$','client.views.home.showhome',name='home_url'),
     url(r'^admin/?$',lambda request: HttpResponsePermanentRedirect('/adminlogin/')),
     url(r'^adminlogin/?$', 'admin.views.authenticate.loginuser', {'next_page': '/adminhome/'}),   
     url(r'^logout/?$', 'admin.views.authenticate.logoutuser'),
