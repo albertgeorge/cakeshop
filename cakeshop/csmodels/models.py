@@ -1,6 +1,5 @@
 from django.db import models
 from cakeshop import settings
-from MySQLdb.constants.FIELD_TYPE import NULL
 
 class ItemCategory(models.Model):
     name = models.CharField(max_length=100)
