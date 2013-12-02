@@ -1,0 +1,37 @@
+{% if showcase %}
+<br/><br/>
+<div class="pagination central">
+    <span class="step-links">
+        {% if items.has_previous %}
+        	<button id="prev" onclick="get_async_update('/showcase/?page={{ showcase.previous_page_number }}');">previous</button>
+        {% endif %}
+
+        <span class="current">
+            Page {{ showcase.number }} of {{ showcase.paginator.num_pages }}.
+        </span>
+
+        {% if showcase.has_next %}
+        	<button id="next" onclick="get_async_update('/showcase/?page={{ showcase.next_page_number }}');">next</button>
+        {% endif %}
+    </span>
+</div>
+<div class="central">
+	<table>	
+		<tr>				
+		{% for item in showcase.object_list %}
+			{% if forloop.counter0|divisibleby:4 %}
+				</tr><tr>
+			{% endif %}
+			<td>
+				{% include 'admin/showcasethumb.html' with thumb=item %}
+			</td>
+			{% if forloop.last %}
+			</tr>
+			{% endif %}
+		{% endfor %}
+		</tr>
+	</table>
+</div>
+{% else %}
+	<span >No items found.</span>
+{% endif %}

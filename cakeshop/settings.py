@@ -9,7 +9,11 @@ ADMINS = (
 
 # Absolute path to the directory of this file (settings.py)
 import os
+<<<<<<< HEAD
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
+=======
+PROJECT_ROOT = os.path.realpath(os.path.dirname(__file__))
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 
 MANAGERS = ADMINS
 
@@ -47,20 +51,36 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+<<<<<<< HEAD
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
 MEDIA_ROOT = ''
+=======
+LOGIN_URL = "/adminlogin/"
+
+# Absolute filesystem path to the directory that will hold user-uploaded files.
+# Example: "/home/media/media.lawrence.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,'media')
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
+<<<<<<< HEAD
 MEDIA_URL = ''
+=======
+MEDIA_URL = '/media/'
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'sitestatic')
+=======
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'sitestatic')
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -76,7 +96,11 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+<<<<<<< HEAD
     os.path.join(PROJECT_PATH, 'static'),
+=======
+    os.path.join(PROJECT_ROOT, 'static'),
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 )
 
 # List of finder classes that know how to find static files in
@@ -87,8 +111,18 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+<<<<<<< HEAD
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '7w0+0n%)w62iuz9apih!vubugppv+9nf3y911h^-p&^coh0$)l'
+=======
+#FILE_UPLOAD_HANDLERS = (
+#    'django.core.files.uploadhandler.MemoryFileUploadHandler',
+#    'django.core.files.uploadhandler.TemporaryFileUploadHandler'
+#)
+
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = 'okeij2uz-4v=t*=&ch*)o5)ljnwus6%vq_8d(@a7_ah02+2k*n'
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -100,10 +134,15 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+<<<<<<< HEAD
     'django.middleware.transaction.TransactionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.RemoteUserMiddleware',
+=======
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
@@ -115,7 +154,11 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+<<<<<<< HEAD
     os.path.join(PROJECT_PATH, 'templates')
+=======
+    os.path.join(PROJECT_ROOT, 'templates'),
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
 )
 
 INSTALLED_APPS = (
@@ -124,8 +167,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
+<<<<<<< HEAD
     'django.contrib.staticfiles',
     'cakeshop.apps.admin'
+=======
+    'django.contrib.staticfiles',  
+    'cakeshop.apps.admin',
+    'cakeshop.apps.client',
+    'cakeshop.csmodels',
+    'cakeshop.services',
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:

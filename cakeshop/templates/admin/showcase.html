@@ -1,0 +1,73 @@
+{% extends "admin/adminbase.html" %}
+{% load url from future %}
+{% block pagetitle %} home {% endblock %}
+{% block pagescripts %}
+	<script type="text/javascript">
+		var selected_showcase_images = [];
+		var onpageload = function(){
+			var url = "{% url 'cakeshop.apps.admin.views.showcase.get_showcase_items' %}";
+		    get_async_update(url);
+		    
+		    $("#saveshowcasebutton").click(function(){
+				if(selected_showcase_images.length > 0){
+					$.post('{% url 'cakeshop.apps.admin.views.showcase.set_showcase' %}',{items:selected_showcase_images.join()},function(result){
+						result = $.parseJSON(result);
+						if(result['status'])
+						{
+							$.ambiance({
+								message: "The showcase images have been successfully set.", 
+					            title: "Success!",
+					            type: "success"});
+						}
+						else
+						{
+							$.ambiance({
+								message: "Error adding the category", 
+					            title: "Error",
+					            type: "error"});
+						}
+					});
+				}
+				else{
+					$.ambiance({
+							message: "Please select atleast one image", 
+				            title: "Error",
+				            type: "error"});
+				}
+			});
+		}
+		
+		var get_async_update = function(url){
+			$.get(url,function(result){
+				$("#items").html(result);
+			},'html');
+		}
+		
+		var oncheckedchanged = function(checkbox){
+			var selected_id = checkbox.name.split('_')[1];
+			var index= 0;
+			if(checkbox.checked){
+				selected_showcase_images.push(selected_id);
+			}
+			else{
+				if(selected_showcase_images.indexOf){
+					index = selected_showcase_images.indexOf(selected_id);
+				}
+				else{
+					for(var i=0;i<selected_showcase_images.length;i++){
+						if(selected_showcase_images[i] == selected_id){
+							break;
+						}
+						index++;
+					}					
+				}
+				selected_showcase_images.splice(index,1);
+			}
+		}
+	</script>
+{% endblock %}
+{% block bodycontent %}
+<div id="items">					
+</div>
+<input type="button" id="saveshowcasebutton" value="Save"/>
+{% endblock %}
