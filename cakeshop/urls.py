@@ -7,6 +7,9 @@ from django.conf import settings
 # from django.contrib import admin
 # admin.autodiscover()
 
+urlpatterns = patterns('cakeshop.apps',
+    url(r'/?$', 'admin.views.loginuser',name='loginuser'),
+)
 urlpatterns = patterns(
     'cakeshop.apps',
     url(r'^$','client.views.home.showhome',name='home_url'),
@@ -35,3 +38,4 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT}))
+

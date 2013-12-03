@@ -1,5 +1,9 @@
 body
 {
+<<<<<<< HEAD
+	background-color:Black;
+}
+=======
 	font-size: 12px; 
 	font-family: Ubuntu,sans-serif;
 	background: #e1c192;
@@ -345,3 +349,4 @@ width:100%;
 {
 	margin-left: 140px;
 }
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8

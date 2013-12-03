@@ -25,4 +25,8 @@ application = get_wsgi_application()
 
 # Apply WSGI middleware here.
 # from helloworld.wsgi import HelloWorldApplication
+<<<<<<< HEAD
 # application = HelloWorldApplication(application)
+=======
+# application = HelloWorldApplication(application)
+>>>>>>> e7b3e983fdde1af8b66d44db66c381a26aa829b8
