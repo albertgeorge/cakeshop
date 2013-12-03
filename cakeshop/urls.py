@@ -10,6 +10,8 @@ from django.conf import settings
 urlpatterns = patterns(
     'cakeshop.apps',
     url(r'^$','client.views.home.showhome',name='home_url'),
+    url(r'product/$','client.views.product.show_products',name='product_url'),
+    url(r'^about/$', 'client.views.home.about',name='aboutus_url'),
     url(r'^admin/?$',lambda request: HttpResponsePermanentRedirect('/adminlogin/')),
     url(r'^adminlogin/?$', 'admin.views.authenticate.loginuser', {'next_page': '/adminhome/'}),   
     url(r'^logout/?$', 'admin.views.authenticate.logoutuser'),
@@ -24,6 +26,7 @@ urlpatterns = patterns(
     url(r'^showcase/?$', 'admin.views.showcase.show_showcase'),
     url(r'^showcaseitems/?$', 'admin.views.showcase.get_showcase_items'),
     url(r'^setshowcaseitems/?$', 'admin.views.showcase.set_showcase'),
+    url(r'^getnewitems/?$', 'client.views.home.get_new_items',name='new_items'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

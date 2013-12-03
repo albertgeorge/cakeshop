@@ -18,13 +18,28 @@
 	<![endif]-->
 	<script type="text/javascript" src="/static/scripts/client/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="/static/scripts/client/imageslider.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+				pageload();
+			});
+		
+		var pageload = function()
+		{
+			if(onpageload != undefined)
+			{
+				onpageload();
+			}			
+		}
+	</script>
+	{% block pagescripts %}
+	{% endblock %}
 </head>
 <body>
 	<div id="header">
 		<div>
 			<div>
 				<div id="logo">
-					<a href="index.html"><img src="/static/images/client/logo.gif" alt="Logo"/></a>
+					<a href="{% url home_url %}"><img src="/static/images/client/logo.gif" alt="Logo"/></a>
 				</div>
 				<!--<div>
 					<div>
@@ -40,8 +55,8 @@
 			</div>
 			<ul>
 				<li class="{% active 'home_url' %}"><a href="{% url home_url %}">Home</a></li>
-				<li class="{% active 'product_url' %}"><a href="">The Pastry shop</a></li>
-				<li class="{% active 'aboutus_url' %}"><a href="">About us</a></li>
+				<li class="{% active 'product_url' %}"><a href="{% url product_url %}">The Pastry shop</a></li>
+				<li class="{% active 'aboutus_url' %}"><a href="{% url aboutus_url %}">About us</a></li>
 				<!--<li><a href="services.html">Services</a></li>
 				<li><a href="blog.html">Blog</a></li>
 				<li><a href="contact.html">Contact Us</a></li>-->
@@ -53,16 +68,16 @@
 		{% block pagecontent %}{% endblock %}
 	</div>
 	<div id="footer">
-		<div class="home">
+		<!--<div class="home">
 			<div>
 				<div class="aside">
-					<!--<div class="signup">
+					<div class="signup">
 						<div>
 							<b>Too <span>BUSY</span> to shop?</b>
 							<a href="signin.html">Sign up for free</a>
 							<p>and we&#39;ll deliver it on your doorstep</p>
 						</div>
-					</div>--><br/><br/><br/><br/>
+					</div><br/><br/><br/><br/>
 					<div class="connect">
 						<span>Follow Us</span>
 						<ul>
@@ -106,9 +121,9 @@
 					<p>Lorem ipsum dolor sit amet, consectetuer adispiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. <a href="index.html" class="readmore">read more</a></p>
 				</li>
 			</ul>
-		</div>
+		</div>-->
 		<div id="navigation">
-			<div>
+			<!--<div>
 				<ul>
 					<li class="first"><a href="index.html">help</a></li>
 					<li><a href="index.html">about cake delight</a></li>
@@ -118,7 +133,7 @@
 					<li><a href="index.html">terms of use(updated 10/15/08)</a></li>
 				</ul>
 				<p>Copyright &copy; 2006-2008 cake delight  All rights reserved</p>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </body>

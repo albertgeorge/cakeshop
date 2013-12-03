@@ -1,0 +1,17 @@
+{% if items %}
+	<table>	
+		<tr>				
+		{% for item in items %}
+			{% if forloop.counter0|divisibleby:3 %}
+				</tr><tr>
+			{% endif %}
+			<td>
+				{% include 'client/itemthumb.html' with thumb=item %}
+			</td>
+			{% if forloop.last %}
+			</tr>
+			{% endif %}
+		{% endfor %}
+		</tr>
+	</table>
+{% endif %}

@@ -201,7 +201,7 @@ p a {
 #content div.home {
 	margin: 0 auto;
 	overflow: hidden;
-	padding: 30px 0;
+	padding: 10px 0;
 	width: 960px;
 }
 
@@ -497,11 +497,12 @@ p a {
 }
 
 #content div.home div.section {
-	background: url(/static/images/client/bg-foodstory.gif) repeat-y top center;
+	/*background: url(/static/images/client/bg-foodstory.gif) repeat-y top center;*/
+	background-color: #DEDBDC;
 	float: right;
 	height: 420px;
 	padding: 20px;
-	width: 430px;
+	width: 920px;
 }
 
 #content div.home div.section div {
