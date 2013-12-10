@@ -1,7 +1,17 @@
 <div>
-	<div>
-		<h2><a href="#">{{thumb.name}}</a></h2>
-		<p>{{ thumb.description}}</p>
-	</div>
-	<img src="{{ thumb.image }}" alt="Image" />
+	<table>
+		<tr>
+			<td valign="top">
+				<table>
+					<tr><td colspan="2"><h2><a href="#">{{thumb.name}}</a></h2></td></tr>
+					<tr>
+						<td><p>{{ thumb.description}}</p></td>
+						<td valign="center">
+							<img src="{{ thumb.image }}" width="125px" height="125px" alt="Image" />
+						</td>
+					</tr>
+				</table>
+			</td>			
+		</tr>
+	</table>
 </div>

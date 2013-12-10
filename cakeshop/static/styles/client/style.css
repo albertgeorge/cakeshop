@@ -18,7 +18,7 @@ a {
 img {
 	border: 0;
 }
-
+#content div.home div.section div
 p a {
 	color: #df4b9f;
 }
@@ -207,9 +207,9 @@ p a {
 
 #content div#services, #content div#about, #content div {
 	margin: 0 auto;
-	padding: 10px 30px 30px;
+	padding: 10px 10px 10px 10px;
 	position: relative;
-	width: 900px;
+	width: 250px;
 }
 
 #content div#services, #content div#about  {
@@ -505,12 +505,8 @@ p a {
 	width: 920px;
 }
 
-#content div.home div.section div {
-	background: #ebe7e8;
-	float: left;
-	height: 395px;
-	padding: 5px 20px 20px;
-	width: 200px;
+#content div#services, #content div#about, #content div table{
+	
 }
 
 #content div.home div.section div h2 {
@@ -520,7 +516,7 @@ p a {
 	font-size: 18px;
 	font-style: italic;
 	font-weight: normal;
-	margin: 0 0 5px;
+	margin: 0 0;
 }
 
 #content div.home div.section div p {
@@ -1193,4 +1189,13 @@ p a {
 	height: 226px;
     padding: 0;
     width: auto;
+}
+
+#content div.home div.section h2 a{
+	text-decoration:none;
+	color: #84284D;
+}
+
+.itemtbl{
+	width:920px;
 }

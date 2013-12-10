@@ -16,5 +16,5 @@ def about(request):
     return HttpResponse(t.render(c))
 
 def get_new_items(request):
-    items = [{'name':'cake 01','description':'test desc for this cake','image':''},{'name':'cake 02','description':'test desc for this cake','image':''},{'name':'cake 03','description':'test desc for this cake','image':''}]
+    items = [{'name':'cake 01 with a long name','description':'test desc for this cake','image':'/media/IMG_6616.JPG'},{'name':'cake 02','description':'test desc for this cake','image':'/media/IMG_6625.JPG'},{'name':'cake 03','description':'test desc for this cake','image':'/media/IMG_6640.JPG'},{'name':'cake 04','description':'test desc for this cake','image':'/media/IMG_6640.JPG'},{'name':'cake 05','description':'test desc for this cake','image':'/media/IMG_6640.JPG'},{'name':'cake 06','description':'test desc for this cake','image':'/media/IMG_6640.JPG'}]
     return render_to_response('client/itemlist.html',{'items':items}, context_instance = RequestContext(request))
